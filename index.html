@@ -26,28 +26,16 @@ pyscript:
   </py-env>
     
     <py-script output="plot"> 
-        
-        
-
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-fig=plt.figure(figsize=(8, 4))
+np.random.seed(42)
 
-# make up some data for demo purposes
-raw = np.random.randint(10, size=(6,6))
-# apply some logic operatioin to the data
-O = (raw >= 5) * 1   # get either 0 or 1 in the array
-I = np.random.randint(10, size=(6,6))  # get 0-9 in the array
+rv = np.random.standard_normal(1000)
 
-# plot each image ...
-# ... side by side
-fig.add_subplot(1, 2, 1)   # subplot one
-
-fig.add_subplot(1, 2, 2)   # subplot two
-# my data is OK to use gray colormap (0:black, 1:white)
+fig, ax = plt.subplots()
+ax.hist(rv, bins=30)
 fig
-        
     </py-script>|
 </body>
 </html>
