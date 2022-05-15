@@ -18,19 +18,18 @@
     <div id="myDrawing"></div>
     <script>
         var drawingCanvas = document.getElementById('myDrawing');
-if(!drawingCanvas.getContext) 
+if(drawingCanvas.getContext) 
 {
-    return;
-}
-var context = drawingCanvas.getContext('2d');
-var pixSize = 1;
-for (var i=0; i < rows.length; i++)
-{
-    var col = rows[i];
-    for (var j=0; j < col.length; j++)
+    var context = drawingCanvas.getContext('2d');
+    var pixSize = 1;
+    for (var i=0; i < rows.length; i++)
     {
-        context.fillStyle = col[j]; // assumes the data is in #hex format already.
-        context.fillRect(j*pixSize,i*pixSize,pixSize,pixSize);
+        var col = rows[i];
+        for (var j=0; j < col.length; j++)
+        {
+            context.fillStyle = col[j]; // assumes the data is in #hex format already.
+            context.fillRect(j*pixSize,i*pixSize,pixSize,pixSize);
+        }
     }
 }
         
