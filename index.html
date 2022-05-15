@@ -15,23 +15,30 @@
     
     <h1>Plotting a histogram of Standard Normal distribution</h1>
 
-    <canvas id="myDrawing"></canvas>
+    <canvas></canvas>
     <script>
-        var drawingCanvas = document.getElementById('myDrawing');
-if(drawingCanvas.getContext) 
-{
-    var context = drawingCanvas.getContext('2d');
-    var pixSize = 1;
-    for (var i=0; i < rows.length; i++)
-    {
-        var col = rows[i];
-        for (var j=0; j < col.length; j++)
-        {
-            context.fillStyle = col[j]; // assumes the data is in #hex format already.
-            context.fillRect(j*pixSize,i*pixSize,pixSize,pixSize);
-        }
-    }
-}
+
+        
+        var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+var canvasWidth = canvas.width;
+var canvasHeight = canvas.height;
+ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+var id = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+var pixels = id.data;
+
+var x = Math.floor(Math.random() * canvasWidth);
+var y = Math.floor(Math.random() * canvasHeight);
+var r = Math.floor(Math.random() * 256);
+var g = Math.floor(Math.random() * 256);
+var b = Math.floor(Math.random() * 256);
+var off = (y * id.width + x) * 4;
+pixels[off] = r;
+pixels[off + 1] = g;
+pixels[off + 2] = b;
+pixels[off + 3] = 255;
+
+ctx.putImageData(id, 0, 0);
         
     </script>
     
