@@ -14,7 +14,29 @@
     
     
     <h1>Plotting a histogram of Standard Normal distribution</h1>
+	
+	<input type="file" />
+	<div id="result"></div>	
 
+	<script>
+		document.querySelector('input').addEventListener('change', function() {
+
+		  var reader = new FileReader();
+		  reader.onload = function() {
+
+		    var arrayBuffer = this.result,
+		      array = new Uint8Array(arrayBuffer),
+		      binaryString = String.fromCharCode.apply(null, array);
+
+		    console.log(binaryString);
+
+		  }
+		  reader.readAsArrayBuffer(this.files[0]);
+
+		}, false);
+	</script>
+	
+	
     <canvas id="my-canvas" width="200" height="200"></canvas>
   <script>
 
