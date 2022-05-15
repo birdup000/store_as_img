@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>store_as_img</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-      <py-env>
-          - numpy
-          - matplotlib
-          - PIL
-      </py-env>
 </head>
 <body>
     <div class="topnav">
@@ -21,23 +14,27 @@
     
     
     <h1>Plotting a histogram of Standard Normal distribution</h1>
-    <div id="plot"></div>
-    <py-script output="plot">
-from PIL import Image
-import numpy as np
 
-value=[82, 97, 114, 33, 26, 7, 1, 0, 183, 181, 19, 254, 12, 1, 5, 8, 0, 7, 1, 1, 237, 196, 133, 128, 0, 253, 94, 67, 154, 61]
-
-# Convert the pixels into an array using numpy
-array = np.array(list(value), dtype=np.uint8)
-
-
-array = array.reshape(5,6)
-# Use PIL to create an image from the new array of pixels
-new_image = Image.fromarray(array)
-new_image.save("a.png")
-
-    </py-script>
+    <script>
+        var drawingCanvas = document.getElementById('myDrawing');
+if(!drawingCanvas.getContext) 
+{
+    return;
+}
+var context = drawingCanvas.getContext('2d');
+var pixSize = 1;
+for (var i=0; i < rows.length; i++)
+{
+    var col = rows[i];
+    for (var j=0; j < col.length; j++)
+    {
+        context.fillStyle = col[j]; // assumes the data is in #hex format already.
+        context.fillRect(j*pixSize,i*pixSize,pixSize,pixSize);
+    }
+}
+        
+    </script>
+    
   </body>
 </body>
 </html>
